@@ -11,13 +11,11 @@ export const MyRoutes = () => {
   const [postArray, setPostArray] = useState(myPostArray);
   useEffect(()=>{
     if(!localStorage.getItem('postArray')){
-      console.log("empty");
+      console.log("localStorage is empty: set default data ");
       localStorage.setItem('postArray', JSON.stringify(myPostArray));
     }  
-     console.log(JSON.parse(localStorage.getItem('postArray')));  
       setPostArray([...JSON.parse(localStorage.getItem('postArray'))]);  
   }, []);
-   console.log(postArray);  
       return (
         <BrowserRouter>
         <Routes>

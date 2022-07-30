@@ -7,9 +7,7 @@ import Post from './component/post';
 
 
 function App({postArray, setPostArray}) {
-  useEffect(()=>{
-console.log(postArray)
-  }, [postArray])
+
   const [option, setOption] = useState(tagsArray[0]);
   const [sort, setSort] = useState("Most Upvotes");
 

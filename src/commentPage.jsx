@@ -49,10 +49,6 @@ function CommentPage(props) {
       return count;
     }
 
-    useEffect(()=>{
-      console.log(postArray);
-    },postArray)
-
   return (
     <div>
       <div className="rootcontainer commentPage">

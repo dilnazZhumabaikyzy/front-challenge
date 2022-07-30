@@ -2,10 +2,6 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Post({el}) {
-  
-  useEffect(()=>{
-    console.log(el);
-  }, [el])
   function calculateCount(post){
     let count = post.comments.length;
      post.comments.forEach((comment)=>{

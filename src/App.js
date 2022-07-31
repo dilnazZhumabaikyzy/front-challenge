@@ -7,21 +7,21 @@ import Post from './component/post';
 
 
 function App({postArray, setPostArray}) {
-
+  const [posts, setPosts] = useState(postArray);
   const [option, setOption] = useState(tagsArray[0]);
   const [sort, setSort] = useState("Most Upvotes");
-
+  
   const handleOptions  = (el)=>{
     setOption(el);
     if(el!== tagsArray[0]){
       const temp = postArray.filter((post)=>post.tags === el);
-      setPostArray(temp);
+      setPosts(temp);
     }
     else{
-      setPostArray(postArray);
+      setPosts(postArray);
     }
   }
-
+  
   const handleSort = ()=>{
     if(sort==="Most Upvotes"){
       setSort("Least Upvotes");
@@ -30,18 +30,22 @@ function App({postArray, setPostArray}) {
       setSort("Most Upvotes");
     }
   }
-
+  
   useEffect(()=>{
     if(sort === "Most Upvotes"){
-      setPostArray([...postArray.sort(( a, b ) => b.rating - a.rating)]);
+      setPosts([...posts.sort(( a, b ) => b.rating - a.rating)]);
     }
     else{
-      setPostArray([...postArray.sort(( a, b ) => a.rating - b.rating)]);
+      setPosts([...posts.sort(( a, b ) => a.rating - b.rating)]);
     }
   },[sort, option]);
 
+  useEffect(()=>{
+    setPosts([...postArray]);
+ }, [postArray]);
+  
   return (
-   <div className="rootcontainer">
+    <div className="rootcontainer">
       <div className="menu-box">
         <div className="card">
           <div>
@@ -91,8 +95,8 @@ function App({postArray, setPostArray}) {
           </div>
           <div className="feedbackBtn">+ Add Feedback</div>
         </div>
-        <div className="postArray">
-        {postArray.map((el)=>( 
+        <div className="posts">
+        {posts.map((el)=>( 
             <Post el ={el}  key={el.key}/>
         ))}
         </div>
